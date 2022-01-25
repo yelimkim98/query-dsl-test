@@ -11,6 +11,6 @@ public interface TestRepository extends JpaRepository<Member, Long> {
 
   @Query("select distinct m from Member m "
       + "left join fetch m.memberCategories memberCategory "
-      + "left join memberCategory.category")
+      + "left join fetch memberCategory.category")
   List<Member> findAll();
 }
