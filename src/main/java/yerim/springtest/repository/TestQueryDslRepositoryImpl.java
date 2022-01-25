@@ -21,6 +21,11 @@ public class TestQueryDslRepositoryImpl implements TestQueryDslRepository{
     QMemberCategory memberCategory = QMemberCategory.memberCategory;
     QCategory category = QCategory.category;
 
-    return queryFactory.selectFrom(member).fetch();
+    return queryFactory.selectFrom(member).distinct()
+        .leftJoin(member.memberCategories, memberCategory)
+        .fetchJoin()
+        .leftJoin(memberCategory.category, category)
+        .fetchJoin()
+        .fetch();
   }
 }
