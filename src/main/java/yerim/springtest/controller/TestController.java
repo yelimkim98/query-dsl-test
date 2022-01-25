@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import yerim.springtest.domain.Member;
 import yerim.springtest.dto.MemberResponse;
 import yerim.springtest.repository.TestRepository;
 
