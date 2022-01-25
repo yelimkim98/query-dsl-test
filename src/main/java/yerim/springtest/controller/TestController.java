@@ -14,8 +14,19 @@ public class TestController {
 
   private final TestRepository testRepository;
 
-  @GetMapping("/members")
-  public List<MemberResponse> findAll() {
+  @GetMapping("/jpql-members")
+  public List<MemberResponse> jpqlFindAll() {
+    return testRepository.findAll().stream().map(
+        member -> {
+          List<String> categoryNames = member.getMemberCategories().stream()
+              .map(memberCategory -> memberCategory.getCategory().getName())
+              .collect(Collectors.toList());
+          return new MemberResponse(member.getId(), member.getName(), categoryNames);
+        }).collect(Collectors.toList());
+  }
+
+  @GetMapping("/querydsl-members")
+  public List<MemberResponse> querydslFindAll() {
     return testRepository.findAll().stream().map(
         member -> {
           List<String> categoryNames = member.getMemberCategories().stream()
