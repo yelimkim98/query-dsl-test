@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import yerim.springtest.domain.Member;
 
 @Repository
-public interface TestRepository extends JpaRepository<Member, Long> {
+public interface TestJpqlRepository extends JpaRepository<Member, Long> {
 
   @Query("select distinct m from Member m "
       + "left join fetch m.memberCategories memberCategory "
